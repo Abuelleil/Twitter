@@ -19,15 +19,17 @@ function Tweet() {
     var x = e;
     setAllUsers(x);
   }
-  function createTweet() {
+  function createTweet(val) {
     axios({
       method: "post",
-      url: `http://localhost:5000/api/users/writeTweet`,
+      url: `http://localhost:5000/api/users/writeTweet/abuelleil98`,
       data: {
-        text: tweet,
+        text: val,
       },
     })
-      .then((res) => {})
+      .then((res) => {
+        getAllTweets();
+      })
       .catch((err) => {
         console.log(err);
       });
@@ -97,7 +99,7 @@ function Tweet() {
           onChange={handleTweet}
         />
         <Button
-          onSubmit={createTweet}
+          onSubmit={createTweet(tweet)}
           sx={{
             textTransform: "capitalize",
             marginTop: "15px",
